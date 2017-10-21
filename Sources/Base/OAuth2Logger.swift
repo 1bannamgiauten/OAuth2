@@ -77,6 +77,9 @@ public protocol OAuth2Logger {
 	
 	/** Log warning messages. */
 	func warn(_ module: String?, filename: String?, line: Int?, function: String?, msg: @autoclosure() -> String)
+	
+	/** Custom for Chicher */
+	func toast(msg: String)
 }
 
 extension OAuth2Logger {
@@ -99,12 +102,17 @@ extension OAuth2Logger {
 	/** Standard debug logging. */
 	public func debug(_ module: String? = "OAuth2", filename: String? = #file, line: Int? = #line, function: String? = #function, msg: @autoclosure() -> String) {
 		log(.debug, module: module, filename: filename, line: line, function: function, msg: msg)
+		toast(msg: msg())
 	}
 	
 	/** Log warning messages. */
 	public func warn(_ module: String? = "OAuth2", filename: String? = #file, line: Int? = #line, function: String? = #function, msg: @autoclosure() -> String) {
 		log(.warn, module: module, filename: filename, line: line, function: function, msg: msg)
 	}
+	
+	public func toast(msg: String) {
+    		fatalError("This function should be override")
+  	}
 }
 
 
